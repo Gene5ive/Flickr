@@ -28,6 +28,12 @@ class ImagesController < ApplicationController
     end
   end
 
+  def destroy
+    @image = Image.find(params[:id])
+    @image.destroy
+    redirect_to images_path
+  end
+
   private
   def image_params
     params.require(:image).permit(:attached_image, :image_caption)

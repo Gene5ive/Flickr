@@ -10,6 +10,7 @@
         <br>
         <%= image.image_caption %>
         <br>
+        <%= link_to 'X', image_path(image), data: { confirm: "Are you sure?", method: "delete"} %>
       <% end %>
     </div>
   <% end %>

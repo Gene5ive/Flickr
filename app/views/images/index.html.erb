@@ -1,13 +1,17 @@
 <h1><%= @user.username %>'s photos</h1>
 
 <%= link_to 'Add Image', new_image_path %>
-
+<br>
 <% if @images.any? %>
   <% @images.each do |image| %>
-    <% if image.user_id === current_user.id %>
-      <%= image_tag image.attached_image.url %>
-      <%= image.image_caption %>
-    <% end %>
+    <div class="col-md-6">
+      <% if image.user_id === current_user.id %>
+        <%= image_tag image.attached_image.url(:medium) %>
+        <br>
+        <%= image.image_caption %>
+        <br>
+      <% end %>
+    </div>
   <% end %>
 <% else %>
   <p>There are no images.</p>

@@ -29,3 +29,15 @@
      padding-right: 15px;
    }
  }
+
+ .all-image {
+   height: 275px;
+   width: 275px;
+   text-align: center;
+   overflow: hidden;
+ }
+
+ .all-image img {
+   width: 100%;
+   margin: 1em 2% .2em 2%;
+ }

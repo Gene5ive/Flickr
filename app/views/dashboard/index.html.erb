@@ -1,0 +1,10 @@
+<%= @user.username %>
+
+  <% if @user.avatar_file_name %>
+    <%= image_tag @user.avatar.url %>
+  <% end %>
+
+<%= form_for @user, :url => dashboard_path(@user.id), :html => { :multipart => true } do |form| %>
+  <%= form.file_field :avatar %>
+  <%= form.submit "Submit" %>
+<% end %>

@@ -5,6 +5,11 @@ class ImagesController < ApplicationController
     @images = Image.all
   end
 
+  def show
+    @image = Image.find(params[:id])
+    @user = User.find(@image.user_id)
+  end
+
   def new
     @user = current_user
     @image = Image.new

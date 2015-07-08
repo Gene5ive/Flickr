@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root :to => 'home#index'
 
   resources :dashboard, :except => [:index]
-  resources :images
+  resources :images do
+    resources :comments
+  end
 
 end

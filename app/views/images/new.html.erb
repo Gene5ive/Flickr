@@ -1,0 +1,6 @@
+<h1>Upload an Image</h1>
+<%= form_for @image, :url => images_path, :html => { :multipart => true } do |form| %>
+  <%= form.file_field :attached_image %>
+  <%= form.text_area :image_caption %>
+  <%= form.submit "Submit" %>
+<% end %>

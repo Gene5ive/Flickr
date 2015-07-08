@@ -1,3 +1,11 @@
 <%= image_tag @image.attached_image.url %>
 <p><%= @image.image_caption %></p>
 <p>Posted by: <%= @user.username %></p>
+
+<% if @image.comments.any? %>
+  <% @image.comments.each do |comment| %>
+    <%= comment.comment_text %>   Posted by: <%= User.find(comment.user_id).username %>
+  <% end %>
+<% end %>
+<br>
+<%= link_to "Add a comment", new_image_comment_path(@image.id) %>

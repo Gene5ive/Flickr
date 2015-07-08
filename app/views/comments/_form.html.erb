@@ -1,0 +1,4 @@
+<%= bootstrap_form_for [@image, @comment] do |f| %>
+  <%= f.text_area :comment_text, label: "Add your comment" %>
+  <%= f.submit "Submit", class: "btn btn-success" %>
+<% end %>

@@ -1,19 +1,38 @@
-<h1><%= @user.username %>'s photos</h1>
+<div class="container">
+  <div class="row">
+    <h1><%= @user.username %>'s photos</h1>
 
-<%= link_to 'Add Image', new_image_path %>
-<br>
-<% if @images.any? %>
-  <% @images.each do |image| %>
-    <div class="col-md-6">
-      <% if image.user_id === current_user.id %>
-        <%= image_tag image.attached_image.url(:medium) %>
-        <br>
-        <%= link_to image.image_caption, edit_image_path(image) %>
-        <br>
-        <%= link_to 'X', image_path(image), data: { confirm: "Are you sure?", method: "delete"} %>
+    <%= link_to 'Add Image', new_image_path %>
+    <br>
+    <% if @images.any? %>
+      <% @images.each do |image| %>
+        <div class="col-md-6">
+          <% if image.user_id === current_user.id %>
+            <%= link_to image_tag(image.attached_image.url(:medium)), image_path(image.id) %>
+            <br>
+            <%= link_to image.image_caption, edit_image_path(image) %>
+            <br>
+            <%= link_to 'X', image_path(image), data: { confirm: "Are you sure?", method: "delete"} %>
+          <% end %>
+        </div>
       <% end %>
-    </div>
-  <% end %>
-<% else %>
-  <p>There are no images.</p>
-<% end %>
+    <% else %>
+      <p>There are no images.</p>
+    <% end %>
+  </div>
+  <div class="row">
+    <h1>Photos you've been tagged in:</h1>
+
+    <% @images.each do |image| %>
+      <% if image.tags.any? %>
+        <% image.tags.each do |tag| %>
+          <% if tag.user_id === @user.id %>
+            <div class="col-md-4">
+              <%= link_to image_tag(Image.find(tag.image_id).attached_image.url(:medium)), image_path(image.id) %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

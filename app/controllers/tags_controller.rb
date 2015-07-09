@@ -5,8 +5,14 @@ class TagsController < ApplicationController
   end
 
   def create
+    @users = User.all
     @image = Image.find(params[:image_id])
     @tag = @image.tags.new(tag_params)
+    @users.each do |user|
+      if @tag.tag_label === user.username
+        @tag.user_id = user.id
+      end
+    end
     if @tag.save
       flash[:notice] = "Tag, you're it!"
       redirect_to image_path(@image.id)
@@ -43,5 +49,4 @@ class TagsController < ApplicationController
   def tag_params
     params.require(:tag).permit(:tag_label)
   end
-
 end

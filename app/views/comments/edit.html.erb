@@ -1,3 +1,6 @@
 <h1>Edit comment</h1>
 
 <%= render 'form' %>
+
+<br>
+<%= link_to "Delete", image_comment_path(@image, @comment), data: { confirm: "Are you sure?", method: "delete" } %>

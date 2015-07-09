@@ -28,6 +28,19 @@ class ImagesController < ApplicationController
     end
   end
 
+  def edit
+    @image = Image.find(params[:id])
+  end
+
+  def update
+    @image = Image.find(params[:id])
+    if @image.update(image_params)
+      flash[:notice] = "Caption edited."
+      redirect_to image_path(@image.id)
+    else
+    end
+  end
+
   def destroy
     @image = Image.find(params[:id])
     @image.destroy

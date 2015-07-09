@@ -14,7 +14,12 @@
 <h3>Comments:</h3>
 <% if @image.comments.any? %>
   <% @image.comments.each do |comment| %>
-    <%= comment.comment_text %>   Posted by: <%= User.find(comment.user_id).username %> <%= image_tag User.find(comment.user_id).avatar.url(:thumb) %>
+    <% if current_user.id === comment.user_id %>
+      <%= comment.comment_text %> <%=link_to "Edit", edit_image_comment_path(@image, comment) %>  Posted by: <%= User.find(comment.user_id).username %> <%= image_tag User.find(comment.user_id).avatar.url(:thumb) %>
+    <% else %>
+      <%= comment.comment_text %>   Posted by: <%= User.find(comment.user_id).username %> <%= image_tag User.find(comment.user_id).avatar.url(:thumb) %>
+    <% end %>
+    <br><br>
   <% end %>
 <% end %>
 <br><br>

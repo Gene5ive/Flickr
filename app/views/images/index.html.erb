@@ -8,7 +8,7 @@
       <% if image.user_id === current_user.id %>
         <%= image_tag image.attached_image.url(:medium) %>
         <br>
-        <%= image.image_caption %>
+        <%= link_to image.image_caption, edit_image_path(image) %>
         <br>
         <%= link_to 'X', image_path(image), data: { confirm: "Are you sure?", method: "delete"} %>
       <% end %>

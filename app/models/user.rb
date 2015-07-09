@@ -8,8 +8,9 @@ class User < ActiveRecord::Base
 
  has_many :images, dependent: :destroy
  has_many :comments, dependent: :destroy
-
  has_many :tags
+ has_and_belongs_to_many :images_users
+
  # has_many :tagged_images, class: "Image", foreign_key: :image_id
 
  validates_presence_of :username

@@ -1,9 +1,20 @@
 <div class="container">
   <div class="row">
+    <% if current_user %>
+      <% if current_user.admin %>
+        <h1>GOD MODE</h1>
+      <% end %>
+    <% end %>
+
     <% @images.each do |image| %>
       <div class="col-md-3">
         <div class="all-image">
           <%= link_to image_tag(image.attached_image.url(:medium)), image_path(image.id) %>
+          <% if current_user %>
+            <% if current_user.admin %>
+              <%= link_to "X", image_path(image.id), data: { confirm: "Are you sure?", method: "delete"} %>
+            <% end %>
+          <% end %>
         </div>
       </div>
     <% end %>

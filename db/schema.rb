@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709210651) do
+ActiveRecord::Schema.define(version: 20150709214142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,14 +34,6 @@ ActiveRecord::Schema.define(version: 20150709210651) do
     t.integer  "attached_image_file_size"
     t.datetime "attached_image_updated_at"
   end
-
-  create_table "images_users", id: false, force: :cascade do |t|
-    t.integer "image_id", null: false
-    t.integer "user_id",  null: false
-  end
-
-  add_index "images_users", ["image_id", "user_id"], name: "index_images_users_on_image_id_and_user_id", using: :btree
-  add_index "images_users", ["user_id", "image_id"], name: "index_images_users_on_user_id_and_image_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "tag_label"
@@ -69,6 +61,7 @@ ActiveRecord::Schema.define(version: 20150709210651) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

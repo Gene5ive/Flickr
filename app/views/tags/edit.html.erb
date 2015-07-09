@@ -1,0 +1,8 @@
+<h3>Edit tag</h3>
+
+<%= bootstrap_form_for [@image, @tag] do |f| %>
+<%= f.text_field :tag_label %>
+<%= f.submit "Edit tag", class: "btn btn-success" %>
+<% end %>
+
+<h3>Delete tag</h3>

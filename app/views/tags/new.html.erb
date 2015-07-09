@@ -1,0 +1,6 @@
+<h1>Tag this image</h1>
+
+<%= bootstrap_form_for [@image, @tag] do |f| %>
+  <%= f.text_field :tag_label %>
+  <%= f.submit "Add tag", class: "btn btn-success" %>
+<% end %>

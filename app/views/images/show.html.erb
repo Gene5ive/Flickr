@@ -1,6 +1,15 @@
 <%= image_tag @image.attached_image.url %>
 <p><%= @image.image_caption %></p>
 <p>Posted by: <%= @user.username %></p>
+<p><strong>Tags:</strong>
+<% if @image.tags.any? %>
+  <% @image.tags.each do |tag| %>
+    <%= link_to tag.tag_label, edit_image_tag_path(@image, tag) %> |
+    <%= link_to 'X', image_tag_path(@image, tag), data: { confirm: "Are you sure?", method: "delete"} %> | &nbsp&nbsp
+    <% end %>
+<% end %></p>
+
+<%= link_to "Tag this image", new_image_tag_path(@image.id) %>
 
 <h3>Comments:</h3>
 <% if @image.comments.any? %>
@@ -9,4 +18,5 @@
   <% end %>
 <% end %>
 <br><br>
+
 <%= link_to "Add a comment", new_image_comment_path(@image.id) %>

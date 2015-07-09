@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   resources :dashboard, :except => [:index]
   resources :images do
-    resources :comments
+    resources :comments, :except => [:index]
+    resources :tags, :except => [:index]
   end
 
 end

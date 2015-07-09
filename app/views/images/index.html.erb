@@ -7,9 +7,9 @@
     <% if @images.any? %>
       <% @images.each do |image| %>
         <div class="col-md-6">
-          <% if image.user_id === current_user.id %>
-            <%= link_to image_tag(image.attached_image.url(:medium)), image_path(image.id) %>
-            <br>
+          <% if (image.user_id === current_user.id) %>
+              <%= link_to image_tag(image.attached_image.url(:medium)), image_path(image.id) %>
+              <br>
             <%= link_to image.image_caption, edit_image_path(image) %>
             <br>
             <%= link_to 'X', image_path(image), data: { confirm: "Are you sure?", method: "delete"} %>
